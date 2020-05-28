@@ -1,6 +1,6 @@
 import spacy
 
-class Model:
+class SpacyModel:
     '''
     This is class for spacy language model
     and its associated functions
