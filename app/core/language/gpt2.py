@@ -18,8 +18,8 @@ class GPT2:
         '''
         This function generates story
         '''
-        encoded_input = tokenizer.encode(context, return_tensors='pt')
-        output = model.generate(encoded_input,do_sample=True, max_length=max_length, top_k=50)
-        gen_text = tokenizer.decode(output[0], skip_special_tokens=True)
+        encoded_input = self.tokenizer.encode(context, return_tensors='pt')
+        output = self.model.generate(encoded_input,do_sample=True, max_length=max_length, top_k=50)
+        gen_text = self.tokenizer.decode(output[0], skip_special_tokens=True)
 
         return gen_text
