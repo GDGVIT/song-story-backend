@@ -12,10 +12,9 @@
 
 
 ## Functionalities
-- [ ]  < insert functionality >
-- [ ]  < insert functionality >
-- [ ]  < insert functionality >
-- [ ]  < insert functionality >
+- [ ]  Capture the gist of a song
+- [ ]  Use this context to generate story
+- [ ]  Include multiple songs for a story
 
 <br>
 
