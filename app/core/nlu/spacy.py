@@ -1,5 +1,6 @@
 import spacy
 import re
+import string
 
 class SpacyModel:
     '''
@@ -133,7 +134,7 @@ class SpacyModel:
                 "you've": "you have"
                 }
 
-        self.c_re = re.compile('(%s)' % '|'.join(cList.keys()))
+        self.c_re = re.compile('(%s)' % '|'.join(self.cList.keys()))
     
     def sentencize(self, text):
         '''
