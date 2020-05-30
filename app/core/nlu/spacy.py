@@ -159,6 +159,9 @@ class SpacyModel:
         This function cleans text
         '''
         text = text.strip()
+        doc = self.nlp(text)
+        tokens = [token.text for token in doc if token.text.isalpha() or token.text in string.punctuation]
+        return ' '.join(tokens)
 
     def expandContractions(self, text):
         '''
