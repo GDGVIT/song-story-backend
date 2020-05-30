@@ -32,7 +32,7 @@ if __name__ == "__main__":
 
     # Generate language
     print("[INFO] Generating story")
-    story = gpt2.get_story(summary, 50)
+    story = gpt2.get_story(summary, 60)
 
     print("STORY")
     print("-"*50)
