@@ -71,3 +71,22 @@ class TextRank:
             summary+=ranked_sent[idx][1]
             
         return summary
+    
+    def top_sentences(self, text, n_sents = 1):
+        '''
+        This function returns top ranked sentences
+        '''
+        sents = self.get_sents(text)
+        sim_mat = self.build_sim_mat(sents)
+        sim_graph = self.build_graph(sim_mat)
+        scores = self.get_page_rank(sim_graph)
+        ranked_sent = sorted(((scores[i], s) for i,s in enumerate(sents)), reverse=True)
+        
+        if n_sents > len(ranked_sent):
+            n_sents = len(ranked_sent)
+        
+        result = []
+        for idx in range(n_sents):
+            result.append(ranked_sent[idx][1])
+        
+        return result
