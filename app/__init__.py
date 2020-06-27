@@ -23,7 +23,9 @@ def status():
     return {'status':"success", 'message':"Server up and running"}
 
 @app.get('/story')
-def get_story(request: StoryRequest, client: Client = Depends(get_client)):
+def get_story(request: StoryRequest, model: Model = Depends(get_model), 
+                    nlp: SpacyModel = Depends(get_spacy),
+                    client: Client = Depends(get_client)):
     
     name = request.name
     artist = client.search_artist(name)
@@ -32,7 +34,14 @@ def get_story(request: StoryRequest, client: Client = Depends(get_client)):
     seed = random.randint(0, len(artist.songs)-1)
     _id = artist.songs[seed][0]
 
-    text = client.get_referents(_id)
+    context = client.get_referents(_id)
+    
+    summarizer = TextRank(nlp)
+
+    prompt = summarizer.summarize(context, 2)
+    if len(prompt) < 10:
+        print("WTF")
+    story = model.story(prompt, 1000)
 
 
-    return {'status':"success", 'message':"Some story", 'story':text}
+    return {'status':"success", 'message':"Some story", 'story':story}
