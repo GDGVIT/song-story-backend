@@ -67,6 +67,9 @@ class TextRank:
         ranked_sent = sorted(((scores[i], s) for i,s in enumerate(sents)), reverse=True)
         
         summary = ''
+
+        n_sents = n_sents if len(ranked_sent) > n_sents else len(ranked_sents)
+        
         for idx in range(n_sents):
             summary+=ranked_sent[idx][1]
             
