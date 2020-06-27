@@ -1,4 +1,11 @@
-class API:
+import os
+from dotenv import load_dotenv
+import requests
+from .artist import Artist
+
+load_dotenv()
+
+class Client:
     
     def __init__(self, access_token):
         '''
@@ -20,7 +27,7 @@ class API:
         except Exception as  error:
             return False, None
         
-        def get_referents(self, _id):
+    def get_referents(self, _id):
         '''
         Gets song data
         '''
@@ -62,6 +69,7 @@ class API:
             query = '%20'.join(query.split(' '))
             path = 'search?q='+query
             valid, response = self._make_request(path)
+            
             if valid:
                 
                 artist_data = response['response']['hits'][0]['result']['primary_artist']
@@ -78,3 +86,10 @@ class API:
         except Exception as error:
             
             return None
+
+token = os.getenv('ACCESS_TOKEN')
+
+client = Client(token)
+
+def get_client():
+    return client
