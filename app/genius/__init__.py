@@ -20,6 +20,27 @@ class API:
         except Exception as  error:
             return False, None
         
+        def get_referents(self, _id):
+        '''
+        Gets song data
+        '''
+        path = 'referents?song_id={}'.format(_id)
+        valid, response = self._make_request(path)
+        
+        if valid:
+            
+            referents= response['response']['referents']
+            
+            texts = []
+            for referent in referents:
+                for anot in referent['annotations']:
+                    for body in anot['body']['dom']['children']:
+                        if(isinstance(body, dict)):
+                            for text in body['children']:
+                                if isinstance(text, str):
+                                    texts.append(text)
+        return ' '.join(texts)
+        
     def sanitize_songs(self, results):
         '''
         Cleans the songs returned by Genius
