@@ -1,18 +1,18 @@
 import torch
 from transformers import GPT2LMHeadModel, GPT2Tokenizer, GPT2Config
 
-class GPT2:
+class Model:
     '''
     This class provides functions to generate text using gpt2 model
     '''
 
-    def __init__(self, tokenizer, model):
+    def __init__(self):
         '''
         Constructor class for GPT2
         '''
-        self.tokenizer = tokenizer
+        self.tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
     
-        self.model = model
+        self.model = GPT2LMHeadModel.from_pretrained("gpt2", pad_token_id=self.tokenizer.eos_token_id)
     
     def get_story(self, context, max_length):
         '''
@@ -23,3 +23,8 @@ class GPT2:
         gen_text = self.tokenizer.decode(output[0], skip_special_tokens=True)
 
         return gen_text
+
+model = Model()
+
+def get_model():
+    return model

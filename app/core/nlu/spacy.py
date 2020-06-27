@@ -7,10 +7,10 @@ class SpacyModel:
     This is class for spacy language model
     and its associated functions
     '''
-    def __init__(self, nlp):
+    def __init__(self):
         
         # Load NLP model
-        self.nlp = nlp
+        self.nlp = spacy.load('en_core_web_md',disable=['ner','tagger'])
 
         # Load Clist
         self.cList = {
@@ -171,3 +171,8 @@ class SpacyModel:
         def replace(match):
             return self.cList[match.group(0)]
         return c_re.sub(replace, text.lower())
+    
+nlp = SpacyModel()
+
+def get_spacy():
+    return nlp
