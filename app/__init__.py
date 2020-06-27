@@ -19,8 +19,8 @@ def status():
     return {'status':"success", 'message':"Server up and running"}
 
 @app.get('/story')
-def get_story(request: StoryRequest, model: Model = Depends(get_model),
+def get_story(request: StoryRequest, gpt2: Model = Depends(get_model),
                 nlp: SpacyModel = Depends(get_spacy)):
     
     
-    return {'status':"success", 'message':"Some story"}
+    return {'status':"success", 'message':"Some story", 'story':story}
