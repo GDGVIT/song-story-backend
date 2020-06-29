@@ -14,10 +14,10 @@ class SpacyModel:
         self.nlp = spacy.load('en_core_web_md',disable=['ner','tagger'])
 
         # Load Clist
-        with open('./clist.json') as f:
-            self.cList = json.load(f) 
+        # with open('./core/nlu/clist.json') as f:
+        #     self.cList = json.load(f) 
 
-        self.c_re = re.compile('(%s)' % '|'.join(self.cList.keys()))
+        # self.c_re = re.compile('(%s)' % '|'.join(self.cList.keys()))
     
     def sentencize(self, text):
         '''
