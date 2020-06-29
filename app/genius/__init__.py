@@ -46,6 +46,9 @@ class Client:
                             for text in body['children']:
                                 if isinstance(text, str):
                                     texts.append(text)
+                text =  referent['fragment']
+                texts.append(text)
+                
         return ' '.join(texts)
         
     def sanitize_songs(self, results):
