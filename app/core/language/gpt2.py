@@ -24,7 +24,7 @@ class Model:
 
         return gen_text
     
-    def story(self, prompt, max_length=200):
+    def story_from_prompt(self, prompt, max_length=200):
         '''
         This function puts together the story
         '''
@@ -35,6 +35,29 @@ class Model:
         end = story.rfind('.')
 
         return story[start+1:end]
+    
+    def story_from_sentences(self, sents, para_len=100):
+        '''
+        Forms story from sentences
+        '''
+
+        paras = []
+
+        para = ""
+        for sent in sents:
+            pretext = para
+            context = sent
+            skip_length = len(pretext)+len(context)
+            para = self.get_text(pretext+context, para_len)
+
+            para = para[skip_length:]
+
+            start = para.find('.')
+            end = para.rfind('.')
+
+            paras.append(para[start+1:end])
+        
+        return ' '.join(paras)
 
 model = Model()
 
