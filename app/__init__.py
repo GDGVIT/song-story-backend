@@ -32,16 +32,17 @@ def get_story(request: StoryRequest, model: Model = Depends(get_model),
 
     #Choose a random song
     seed = random.randint(0, len(artist.songs)-1)
+
     _id = artist.songs[seed][0]
+    title = artist.songs[seed][1]
 
     context = client.get_referents(_id)
     
     summarizer = TextRank(nlp)
 
-    prompt = summarizer.summarize(context, 2)
-    if len(prompt) < 10:
-        print("WTF")
-    story = model.story(prompt, 1000)
+    prompt = summarizer.summarize(context, 1)
+    
+    story = model.story_from_prompt(prompt, 1000)
 
 
-    return {'status':"success", 'message':"Some story", 'story':story}
+    return {'status':"success", 'message':"Some story", 'story':story,'title':title}
