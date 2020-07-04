@@ -1,6 +1,7 @@
 import os
-from dotenv import load_dotenv
 import requests
+import urllib
+from dotenv import load_dotenv
 from .artist import Artist
 
 load_dotenv()
@@ -69,8 +70,10 @@ class Client:
         Search for artist
         '''
         try:
-            query = '%20'.join(query.split(' '))
-            path = 'search?q='+query
+            #query = '%20'.join(query.split(' '))
+            f = {'q': query}
+            query = urllib.parse.urlencode(f)
+            path = 'search?'+query
             valid, response = self._make_request(path)
             
             if valid:
