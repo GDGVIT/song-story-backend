@@ -9,6 +9,13 @@
 [![DOCS](https://img.shields.io/badge/Documentation-see%20docs-green?style=flat-square&logo=appveyor)](INSERT_LINK_FOR_DOCS_HERE) 
   [![UI ](https://img.shields.io/badge/User%20Interface-Link%20to%20UI-orange?style=flat-square&logo=appveyor)](INSERT_UI_LINK_HERE)
 
+<br>
+
+
+![CI Tests](https://github.com/GDGVIT/song-story-backend/workflows/CI%20Tests/badge.svg)
+![Check Formatting](https://github.com/GDGVIT/song-story-backend/workflows/Check%20Formatting/badge.svg)
+![Build mkdocs](https://github.com/GDGVIT/song-story-backend/workflows/Build%20mkdocs/badge.svg)
+![Deploy mkdocs](https://github.com/GDGVIT/song-story-backend/workflows/Deploy%20mkdocs/badge.svg)
 
 ## Functionalities
 
