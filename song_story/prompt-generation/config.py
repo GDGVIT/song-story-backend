@@ -5,6 +5,6 @@ EPOCHS = 5
 LEARNING_RATE = 3e-5
 MAX_INPUT_LEN = 50
 MAX_TARGET_LEN = 36
-Tokenizer = T5Tokenizer.from_pretrained('t5-base')
+Tokenizer = T5Tokenizer.from_pretrained("t5-base")
 
-model_path = './models/t5-prompt.pt'
+model_path = "./models/t5-prompt.pt"
