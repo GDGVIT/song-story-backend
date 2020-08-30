@@ -7,15 +7,13 @@ class Model:
     This class provides functions to generate text using gpt2 model
     """
 
-    def __init__(self):
+    def __init__(self, tokenizer, model):
         """
         Constructor class for GPT2
         """
-        self.tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
+        self.tokenizer = tokenizer
 
-        self.model = GPT2LMHeadModel.from_pretrained(
-            "gpt2", pad_token_id=self.tokenizer.eos_token_id
-        )
+        self.model = model
 
     def get_text(self, context, max_length=100):
         """
@@ -62,10 +60,3 @@ class Model:
             paras.append(para[start + 1 : end])
 
         return " ".join(paras)
-
-
-model = Model()
-
-
-def get_model():
-    return model

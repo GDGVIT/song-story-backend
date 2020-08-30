@@ -10,13 +10,15 @@ class SpacyModel:
     and its associated functions
     """
 
-    def __init__(self):
+    def __init__(self, size="md"):
 
+        # Model size
+        if size in ["md", "sm", "lg"]:
+            model_size = "en_core_web_{}".format(size)
         # Load NLP model
-        self.nlp = spacy.load("en_core_web_md", disable=["ner", "tagger"])
-
+        self.nlp = spacy.load(model_size, disable=["tagger", "ner"])
         # Load Clist
-        # with open('./core/nlu/clist.json') as f:
+        # with open('./clist.json') as f:
         #     self.cList = json.load(f)
 
         # self.c_re = re.compile('(%s)' % '|'.join(self.cList.keys()))
@@ -62,10 +64,3 @@ class SpacyModel:
             return self.cList[match.group(0)]
 
         return c_re.sub(replace, text.lower())
-
-
-nlp = SpacyModel()
-
-
-def get_spacy():
-    return nlp
