@@ -37,8 +37,8 @@ model.to(device)
 
 def predict(test_example):
     """
-  This function generates prediction for given input
-  """
+    This function generates prediction for given input
+    """
     model.eval()
     with torch.no_grad():
         encoded = encode(test_example, config.Tokenizer, config.MAX_INPUT_LEN)
