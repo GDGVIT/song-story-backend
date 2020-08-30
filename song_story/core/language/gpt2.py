@@ -2,7 +2,7 @@ import torch
 from transformers import GPT2LMHeadModel, GPT2Tokenizer, GPT2Config
 
 
-class Model:
+class GPT2_Model:
     """
     This class provides functions to generate text using gpt2 model
     """
