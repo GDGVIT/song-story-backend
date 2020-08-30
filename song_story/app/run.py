@@ -50,7 +50,6 @@ class App(Flask):
 
         token = os.getenv("ACCESS_TOKEN")
 
-        print("[TOKEN] {}".format(token))
         self.client = GeniusClient(token)
 
 
