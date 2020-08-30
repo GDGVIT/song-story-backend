@@ -55,12 +55,12 @@ class SpacyModel:
         ]
         return " ".join(tokens)
 
-    def expandContractions(self, text):
-        """
-        This function expands contractions
-        """
+    # def expandContractions(self, text):
+    #     """
+    #     This function expands contractions
+    #     """
 
-        def replace(match):
-            return self.cList[match.group(0)]
+    #     def replace(match):
+    #         return self.cList[match.group(0)]
 
-        return c_re.sub(replace, text.lower())
+    #     return c_re.sub(replace, text.lower())
