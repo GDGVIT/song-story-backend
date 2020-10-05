@@ -73,7 +73,7 @@ def get_artists():
     name = request.args.get("name")
 
     r = re.compile("{}*".format(name), re.IGNORECASE)
-    search_list = list(filter(r.match, self.artists)) 
+    search_list = list(filter(r.match, app.artists)) 
     print(search_list)
 
 
