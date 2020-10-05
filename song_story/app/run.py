@@ -1,4 +1,5 @@
 import os
+import re
 import random
 import json
 from dotenv import load_dotenv
@@ -6,6 +7,7 @@ from rake_nltk import Rake
 
 from flask import Flask
 from flask import request, jsonify
+from flask_cors import CORS
 
 import spacy
 import torch
@@ -50,15 +52,29 @@ class App(Flask):
 
         token = os.getenv("ACCESS_TOKEN")
 
+        # Load lists of artists
+        self.artists = open('../data/artists.text').readlines()
+
+        
+
         self.client = GeniusClient(token)
 
 
 app = App(__name__)
-
+CORS(app)
 
 @app.route("/status", methods=["GET"])
 def status():
     return {"status": "success", "message": "Server up and running"}
+
+
+@app.route("/artist", methods=["GET"])
+def get_artists():
+    name = request.args.get("name")
+
+    r = re.compile("{}*".format(name), re.IGNORECASE)
+    search_list = list(filter(r.match, self.artists)) 
+    print(search_list)
 
 
 @app.route("/context", methods=["GET"])
