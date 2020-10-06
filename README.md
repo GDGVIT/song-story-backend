@@ -12,16 +12,12 @@
 <br>
 
 
-![CI Tests](https://github.com/GDGVIT/song-story-backend/workflows/CI%20Tests/badge.svg)
-![Check Formatting](https://github.com/GDGVIT/song-story-backend/workflows/Check%20Formatting/badge.svg)
-![Build mkdocs](https://github.com/GDGVIT/song-story-backend/workflows/Build%20mkdocs/badge.svg)
-![Deploy mkdocs](https://github.com/GDGVIT/song-story-backend/workflows/Deploy%20mkdocs/badge.svg)
-
 ## Functionalities
 
-- [ ]  Capture the gist of a song
-- [ ]  Use this context to generate story
-- [ ]  Include multiple songs for a story
+- [x]  Get song meaning using Genius lyrics API
+- [x]  Generate keywords from the song context
+- [x]  Generate prompts using the keywords
+- [x]  Generate story from prompt
 
 <br>
 
@@ -29,20 +25,25 @@
 ## Instructions to run
 
 * Pre-requisites:
-	-  < insert pre-requisite >
-	-  < insert pre-requisite >
+	- System with atleast 4GB RAM
+	- Download the trained models from Google Drive
 
-* < directions to install > 
-
-```bash
-< insert code >
-```
-
-* < directions to execute >
+* Directions To Install
 
 ```bash
-< insert code >
+cd to/project/directory 
+pip install -r requirements.txt
 ```
+
+* Directions To Execute
+
+```bash
+cd to/project/directory
+python3 song_story/app/run.py
+```
+
+* Trained Model Download Links
+>The trained models will be provided soon
 
 ## Contributors
 
@@ -55,7 +56,7 @@
 Ramaneswaran
 
 <p align="center">
-<img src = "https://dscvit.com/images/dsc-logo-square.svg" width="150" height="150" alt="Your Name Here (Insert Your Image Link In Src">
+<img src = "https://avatars0.githubusercontent.com/u/51799927?s=460&u=3a1e26881d54bc1c4cf2719f976aaa6783db0f54&v=4" width="150" height="150" alt="Raman">
 </p>
 <p align="center">
 
