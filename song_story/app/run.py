@@ -53,7 +53,9 @@ class App(Flask):
         token = os.getenv("ACCESS_TOKEN")
 
         # Load lists of artists
-        self.artists = open('../data/artists.text').readlines()
+        cur_dir =  os.path.dirname(os.path.realpath(__file__))
+        dataset = os.path.join(cur_dir, '../data/artists.txt')
+        self.artists = open(dataset).readlines()
 
         
 
@@ -89,6 +91,7 @@ def get_context():
 
     _id = artist.songs[seed][0]
     title = artist.songs[seed][1]
+    image = artist.image_url
 
     context = app.client.get_referents(_id)
 
@@ -98,6 +101,7 @@ def get_context():
             "message": "Some story",
             "story": context,
             "title": title,
+            "image": image
         }
     )
 
