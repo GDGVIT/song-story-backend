@@ -14,9 +14,10 @@
 
 ## Functionalities
 
-- [*]  Capture the gist of a song
-- [*]  Use this context to generate story
-- [*]  Include multiple songs for a story
+- [x]  Get song meaning using Genius lyrics API
+- [x]  Generate keywords from the song context
+- [x]  Generate prompts using the keywords
+- [x]  Generate story from prompt
 
 <br>
 
