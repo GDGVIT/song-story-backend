@@ -30,6 +30,8 @@ class App(Flask):
         # Load models
         print("[INFO] Loading models")
 
+        cur_dir =  os.path.dirname(os.path.realpath(__file__))
+
         # Loading GPT2
         gpt2_tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
         # add the EOS token as PAD token to avoid warnings
@@ -38,22 +40,22 @@ class App(Flask):
         )
 
         # Initializing T5 Model
-        # t5_model = T5ForConditionalGeneration.from_pretrained("t5-base")
-        # t5_tokenizer = T5Tokenizer.from_pretrained("t5-base")
-        # t5_state_path = "./models/final.pt"
-        # t5_model.load_state_dict(torch.load(t5_state_path))
+        t5_model = T5ForConditionalGeneration.from_pretrained("t5-base")
+        t5_tokenizer = T5Tokenizer.from_pretrained("t5-base")
+        t5_state_path = os.path.join(cur_dir, "../../models/final.pt")
+        t5_model.load_state_dict(torch.load(t5_state_path))
 
         # Initializing classes
         print("[INFO] Initializing classes")
-        # self.spacy_model = SpacyModel(size="md")
+
+        self.spacy_model = SpacyModel(size="md")
         self.gpt2 = GPT2(gpt2_tokenizer, gpt2_model)
-        # self.t5 = T5(t5_tokenizer, t5_model, 100)
+        self.t5 = T5(t5_tokenizer, t5_model, 100)
         self.r = Rake()
 
         token = os.getenv("ACCESS_TOKEN")
 
         # Load lists of artists
-        cur_dir =  os.path.dirname(os.path.realpath(__file__))
         dataset = os.path.join(cur_dir, '../data/artists.txt')
         self.artists = open(dataset).readlines()
 
@@ -69,15 +71,22 @@ CORS(app)
 def status():
     return {"status": "success", "message": "Server up and running"}
 
-
 @app.route("/artist", methods=["GET"])
 def get_artists():
     name = request.args.get("name")
 
     r = re.compile("{}*".format(name), re.IGNORECASE)
     search_list = list(filter(r.match, app.artists)) 
-    print(search_list)
+    artists = ','.join(search_list)
+    return jsonify({
+        'artists': artists,
+    })
 
+@app.route("/prompt", methods=["GET"])
+def get_prompt():
+
+    keys = request.args.get("keywords")
+    prompt = app.t5.get_prompt(keys, 300)
 
 @app.route("/context", methods=["GET"])
 def get_context():
