@@ -37,17 +37,11 @@ class App(Flask):
             "gpt2", pad_token_id=gpt2_tokenizer.eos_token_id
         )
 
-        # Initializing T5 Model
-        # t5_model = T5ForConditionalGeneration.from_pretrained("t5-base")
-        # t5_tokenizer = T5Tokenizer.from_pretrained("t5-base")
-        # t5_state_path = "./models/final.pt"
-        # t5_model.load_state_dict(torch.load(t5_state_path))
+
 
         # Initializing classes
-        print("[INFO] Initializing classes")
-        # self.spacy_model = SpacyModel(size="md")
+
         self.gpt2 = GPT2(gpt2_tokenizer, gpt2_model)
-        # self.t5 = T5(t5_tokenizer, t5_model, 100)
         self.r = Rake()
 
         token = os.getenv("ACCESS_TOKEN")
@@ -56,8 +50,6 @@ class App(Flask):
         cur_dir =  os.path.dirname(os.path.realpath(__file__))
         dataset = os.path.join(cur_dir, '../data/artists.txt')
         self.artists = open(dataset).readlines()
-
-        
 
         self.client = GeniusClient(token)
 
