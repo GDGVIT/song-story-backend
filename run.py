@@ -68,7 +68,10 @@ def get_artists():
 
     r = re.compile("{}*".format(name), re.IGNORECASE)
     search_list = list(filter(r.match, app.artists)) 
-    print(search_list)
+    artists = ','.join(search_list)
+    return jsonify({
+        'artists': artists,
+    })
 
 
 @app.route("/context", methods=["GET"])
