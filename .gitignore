@@ -1,3 +1,6 @@
 models/
 song_story/.env
-song_story/app/__pycache__/run.cpython-38.pyc
+
+# pycache
+song_story/app/__pycache__/
+song_story/__pycache__/
