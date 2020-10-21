@@ -9,14 +9,11 @@ from flask import Flask
 from flask import request, jsonify
 from flask_cors import CORS
 
-import spacy
 import torch
 from transformers import GPT2LMHeadModel, GPT2Tokenizer, GPT2Config
 from transformers import T5Tokenizer, T5ForConditionalGeneration
 
 
-from song_story import SpacyModel
-from song_story import TextRank
 from song_story import GPT2, T5
 from song_story import GeniusClient
 
@@ -34,10 +31,11 @@ class App(Flask):
         gpt2_tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
         # add the EOS token as PAD token to avoid warnings
         gpt2_model = GPT2LMHeadModel.from_pretrained(
-            "gpt2", pad_token_id=gpt2_tokenizer.eos_token_id
+            "./models/open-ai-gpt2", pad_token_id=gpt2_tokenizer.eos_token_id
         )
 
 
+        print("Done")
 
         # Initializing classes
 
