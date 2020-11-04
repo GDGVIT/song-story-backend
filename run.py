@@ -2,6 +2,7 @@ import os
 import re
 import random
 import json
+import pickle
 from dotenv import load_dotenv
 from rake_nltk import Rake
 
@@ -28,7 +29,9 @@ class App(Flask):
         print("[INFO] Loading models")
 
         # Loading GPT2
-        gpt2_tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
+        # gpt2_tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
+        # pickle.dump(gpt2_tokenizer, open('./models/tokenizer.pkl', 'wb'))
+        gpt2_tokenizer = pickle.load(open('./models/tokenizer.pkl', 'rb'))
         # add the EOS token as PAD token to avoid warnings
         gpt2_model = GPT2LMHeadModel.from_pretrained(
             "./models/open-ai-gpt2", pad_token_id=gpt2_tokenizer.eos_token_id
