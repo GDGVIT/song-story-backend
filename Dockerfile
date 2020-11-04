@@ -11,4 +11,4 @@ RUN pip install gunicorn
 COPY . . 
 
 # Running python application
-CMD gunicorn run:app --bind 0.0.0.0:3000 --reload
+CMD gunicorn run:app --bind 0.0.0.0:3000 --reload --worker-class=gevent
