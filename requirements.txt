@@ -8,3 +8,4 @@ python-dotenv==0.14.0
 rake_nltk==1.0.4
 spacy==2.3.2
 transformers==3.4.0
+gevent==20.9.0
