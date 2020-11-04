@@ -4,3 +4,4 @@ song_story/.env
 # pycache
 song_story/app/__pycache__/
 song_story/__pycache__/
+__pycache__/
