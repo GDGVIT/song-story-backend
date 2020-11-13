@@ -30,9 +30,7 @@ statuses = [
     "6 - Mature",
     "7 - Inactive",
 ]
-py_versions = (
-    "2.0 2.1 2.2 2.3 2.4 2.5 2.6 2.7 3.0 3.1 3.2 3.3 3.4 3.5 3.6 3.7 3.8".split()
-)
+
 
 requirements = cfg.get("requirements", "").split()
 lic = licenses[cfg["license"]]
@@ -46,10 +44,6 @@ setuptools.setup(
         "Intended Audience :: " + cfg["audience"].title(),
         "License :: " + lic[1],
         "Natural Language :: " + cfg["language"].title(),
-    ]
-    + [
-        "Programming Language :: Python :: " + o
-        for o in py_versions[py_versions.index(min_python) :]
     ],
     url=cfg["git_url"],
     packages=setuptools.find_packages(),
