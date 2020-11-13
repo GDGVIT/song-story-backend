@@ -12,16 +12,12 @@ class SpacyModel:
 
     def __init__(self, size="md"):
 
-        # Model size
+        
         if size in ["md", "sm", "lg"]:
             model_size = "en_core_web_{}".format(size)
-        # Load NLP model
+        
         self.nlp = spacy.load(model_size, disable=["tagger", "ner"])
-        # Load Clist
-        # with open('./clist.json') as f:
-        #     self.cList = json.load(f)
 
-        # self.c_re = re.compile('(%s)' % '|'.join(self.cList.keys()))
 
     def sentencize(self, text):
         """
@@ -55,12 +51,3 @@ class SpacyModel:
         ]
         return " ".join(tokens)
 
-    # def expandContractions(self, text):
-    #     """
-    #     This function expands contractions
-    #     """
-
-    #     def replace(match):
-    #         return self.cList[match.group(0)]
-
-    #     return c_re.sub(replace, text.lower())
