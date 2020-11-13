@@ -27,25 +27,25 @@ class App(Flask):
     def __init__(self, name):
         super(App, self).__init__(name)
 
-        # Load models
+      
         print("[INFO] Loading models")
 
         cur_dir =  os.path.dirname(os.path.realpath(__file__))
 
-        # Loading GPT2
+        
         gpt2_tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
         # add the EOS token as PAD token to avoid warnings
         gpt2_model = GPT2LMHeadModel.from_pretrained(
             "gpt2", pad_token_id=gpt2_tokenizer.eos_token_id
         )
 
-        # Initializing T5 Model
+        
         t5_model = T5ForConditionalGeneration.from_pretrained("t5-base")
         t5_tokenizer = T5Tokenizer.from_pretrained("t5-base")
         t5_state_path = os.path.join(cur_dir, "./models/final.pt")
         t5_model.load_state_dict(torch.load(t5_state_path))
 
-        # Initializing classes
+        
         print("[INFO] Initializing classes")
 
         self.spacy_model = SpacyModel(size="md")
@@ -55,7 +55,7 @@ class App(Flask):
 
         token = os.getenv("ACCESS_TOKEN")
 
-        # Load lists of artists
+        
         dataset = os.path.join(cur_dir, './data/artists.txt')
         self.artists = open(dataset).readlines()
 
